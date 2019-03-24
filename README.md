@@ -29,9 +29,9 @@ Automatic created block and remove in fsm/amparo cms
        
        path_block_class   -------------------------------- where classes of blocks are located
        
-       path_to_blocks_views   -------------------------- where the blocks template are located
+       path_to_blocks_views   ------------------------- where  templates of blocks are located
        
-       ext_tpl_block   ----------------------------------- extension template block (tpl.html)
+       ext_tpl_block   -------------------------------- extension template of block (tpl.html)
        
        default_tpl_content   -------------------- default function with helpers in views (1/0)
         
