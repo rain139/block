@@ -7,7 +7,7 @@ Automatic created block and remove in fsm/amparo cms
     
     2. Create alias (command block) (see example)
     
-    3. In your project home dir run command: block init or if extension: block init --ext
+    3. In your project home dir run command: `block init` or if extension: `block init --ext`
     
 # Example create alias:
     1. nano ~ / .bashrc
