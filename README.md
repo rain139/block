@@ -27,7 +27,7 @@ Automatic created block and remove in fsm/amparo cms
 
        Project confing in create_block.conf (when you run block init)
        
-       path_block_class   --------------------------------- where the blocks class are located
+       path_block_class   -------------------------------- where classes of blocks are located
        
        path_to_blocks_views   -------------------------- where the blocks template are located
        
