@@ -5,12 +5,13 @@ from src.helpers import *
 class Config:
     __path = None
 
-    def __init__(self,init = False):
+    def __init__(self, init=False):
         dir_conf = os.path.abspath('create_block.conf')
         if os.path.isfile(dir_conf) or init:
             self.__path = dir_conf
         else:
-            exit("\n \033[91m Block script not init. run: \n\n \033[0m    block init \n\n     block init --ext (for extension)\n")
+            exit(
+                "\n \033[91m Block script not init. run: \n\n \033[0m    block init \n\n     block init --ext (for extension)\n")
 
     def change(self, key, value=[]):
         if 2 >= len(sys.argv):
@@ -35,7 +36,14 @@ class Config:
         file.close()
 
     def create_config(self):
-        for_extension = search_key('--ext')
+        for_extension = False
+
+        if 2 < len(sys.argv):
+            if sys.argv[2] == '--ext':
+                for_extension = True
+            else:
+                exit("\033[91m What is " + sys.argv[2] + "?\n\n --ext ?\n \033[0m")
+
         if not os.path.isfile(self.__path):
             with open(os.path.abspath('create_block.conf'), "w") as file:
                 if for_extension:
