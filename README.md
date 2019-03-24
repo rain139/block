@@ -9,7 +9,7 @@ Automatic created block and remove in fsm/amparo cms
     
     3. In your project home dir run command: `block init` or if extension: `block init --ext`
     
-# Example create alias:
+# Example create alias (debian):
     1. nano ~ / .bashrc
     2. alias block='python3 /home/egor/www/skeleton/block/block.py'
     3. source ~/.bashrc
