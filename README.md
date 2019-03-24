@@ -11,7 +11,7 @@ Automatic created block and remove in fsm/amparo cms
     
 # Example create alias (debian):
     1. nano ~ / .bashrc
-    2. alias block='python3 /home/egor/www/skeleton/block/block.py'
+    2. write end file and save: alias block='python3 /home/egor/www/skeleton/block/block.py'
     3. source ~/.bashrc
 
  # Commands
