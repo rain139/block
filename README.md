@@ -14,7 +14,7 @@ Automatic created block and remove in fsm/amparo cms
     2. alias block='python3 /home/egor/www/skeleton/block/block.py'
     3. source ~/.bashrc
 
- #Commands
+ # Commands
         block init    --------------------------------------- install script block in this project
         
         block init --ext   ------------ install script block in this project with extension config
