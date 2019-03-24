@@ -5,9 +5,12 @@ from src.helpers import *
 class Config:
     __path = None
 
-    def __init__(self):
-        self.__path = os.path.abspath('create_block.conf')
-        self.create_config()
+    def __init__(self,init = False):
+        dir_conf = os.path.abspath('create_block.conf')
+        if os.path.isfile(dir_conf) or init:
+            self.__path = dir_conf
+        else:
+            exit("\n \033[91m Block script not init. run: \n\n \033[0m    block init \n\n     block init --ext (for extension)\n")
 
     def change(self, key, value=[]):
         if 2 >= len(sys.argv):
@@ -32,13 +35,23 @@ class Config:
         file.close()
 
     def create_config(self):
+        for_extension = search_key('--ext')
         if not os.path.isfile(self.__path):
             with open(os.path.abspath('create_block.conf'), "w") as file:
-                file.write('path_to_blocks=templates/site\n')
+                if for_extension:
+                    file.write('path_block_class=blocks\n')
+                    file.write('path_to_blocks_views=../../../templates/site\n')
+                else:
+                    file.write('path_block_class=templates/site\n')
+                    file.write('path_to_blocks_views=templates/site\n')
+
                 file.write('ext_tpl_block=tpl.html\n')
                 file.write('default_tpl_content=1\n')
                 file.write('default_block_content=1\n')
+
                 file.close()
+        else:
+            exit('\033[91m BLOCK IS INIT see ' + os.path.abspath('create_block.conf') + ' \033[0m')
 
     def get_settings(self):
         config = {}

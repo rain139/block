@@ -1,4 +1,5 @@
 import os
+import sys
 from src.helpers import *
 
 
@@ -38,7 +39,11 @@ class CreateBlock:
         self.__change_settings_block()
 
     def __set_path_block(self):
-        self.__path_blocks = os.path.abspath('app/blocks/') + "/block_" + self.__arguments['class_name'] + ".class.php"
+        dir_blocks = os.path.abspath(self.__settings['path_block_class'].strip('/'))
+        if os.path.isdir(dir_blocks):
+            self.__path_blocks = dir_blocks + "/block_" + self.__arguments['class_name'] + ".class.php"
+        else:
+            exit("\n \033[91m  Dir not found:  " + dir_blocks + "\n  \033[0m see " + os.path.abspath('create_block.conf'))
 
     def __create_block(self):
         if not os.path.isfile(self.__path_blocks):
@@ -60,7 +65,7 @@ class CreateBlock:
             exit("\n \033[91m  Block " + self.__arguments['class_name'] + " exist!!\n \033[0m ")
 
     def __change_settings_block(self):
-        path_settings = os.path.abspath('app/blocks/') + "/settings.php"
+        path_settings = os.path.abspath(self.__settings['path_block_class'].strip('/')) + "/settings.php"
 
         file = open(path_settings, "r")
         lines = file.readlines()
@@ -79,7 +84,7 @@ class CreateBlock:
 
     def __create_templates(self):
         if int(self.__arguments['visible']):
-            path = os.path.abspath(self.__settings['path_to_blocks'].strip('/'))
+            path = os.path.abspath(self.__settings['path_to_blocks_views'].strip('/'))
             name_tpl = '/block_' + self.__arguments['class_name'] + "." + self.__settings['ext_tpl_block'].strip('.')
             if os.path.isdir(path):
                 with open(path + name_tpl, "w") as file:
@@ -92,4 +97,4 @@ class CreateBlock:
                 file.close()
             else:
                 os.remove(self.__path_blocks)
-                exit("\n \033[91m  Dir  " + path + " not exits!!\n \033[0m ")
+                exit("\n \033[91m  Dir  " + path + " not exits!!\n \033[0m see " + os.path.abspath('create_block.conf'))
