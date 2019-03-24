@@ -2,19 +2,19 @@
 Automatic created block and remove in fsm/amparo cms
 
 
-#Install
+# Install
     1. git clone https://github.com/rain139/block.git
     
     2. Create alias (command block) (see example)
     
     3. In your project home dir run command: block init or if extension: block init --ext
     
-#Example create alias:
+# Example create alias:
     1. nano ~ / .bashrc
     2. alias block='python3 /home/egor/www/skeleton/block/block.py'
     3. source ~/.bashrc
 
-#Commands
+ #Commands
         block init    --------------------------------------- install script block in this project
         
         block init --ext   ------------ install script block in this project with extension config
@@ -23,7 +23,7 @@ Automatic created block and remove in fsm/amparo cms
         
         block [class name block] --rm     ------------------------------------------- remove block
 
-#Config
+# Config
 
        Project confing in create_block.conf (when you run block init)
        
