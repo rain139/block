@@ -50,7 +50,7 @@ class Config:
                     file.write('path_block_class=blocks\n')
                     file.write('path_to_blocks_views=../../../templates/site\n')
                 else:
-                    file.write('path_block_class=blocks\n')
+                    file.write('path_block_class=app/blocks\n')
                     file.write('path_to_blocks_views=templates/site\n')
 
                 file.write('ext_tpl_block=tpl.html\n')
