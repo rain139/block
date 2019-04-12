@@ -6,7 +6,6 @@ import subprocess
 from src.helpers import *
 
 
-
 class block:
     def __init__(self):
         pass
@@ -26,8 +25,6 @@ class block:
         else:
             CreateBlock(Config().get_settings()).run()
             exit('Success')
-
-
 
 
 block().route()

@@ -15,11 +15,16 @@ class CreateBlock:
         self.__set_argument('Not find second argument (name block)', 2, 'name_block')
         self.__set_argument(False, 3, 'visible', ['1', '0'])
         self.__set_argument(False, 4, 'sub_class_name')
+        self.__edit_argument_sub_block()
+
+    def __edit_argument_sub_block(self):
+        if 'sub_class_name' in self.__arguments:
+            sub_class_name = self.__arguments['sub_class_name'].split(',')
+            self.__arguments['sub_class_name'] = list(map(lambda item: item.strip(), sub_class_name))
 
     def __set_argument(self, error, key, name_argument, value=[]):
-        if key >= len(sys.argv):
-            if error:
-                exit("\n \033[91m " + error + " see --help \n \033[0m")
+        if key >= len(sys.argv) and error:
+            exit("\n \033[91m " + error + " see --help \n \033[0m")
         elif value:
             if sys.argv[key].isdigit() and sys.argv[key] in value:
                 self.__arguments[name_argument] = sys.argv[key]
@@ -38,6 +43,7 @@ class CreateBlock:
         self.__create_block()
         self.__create_templates()
         self.__change_settings_block()
+        self.__create_sub_blocks()
 
     def __set_path_block(self):
         dir_blocks = os.path.abspath(self.__settings['path_block_class'].strip('/'))
@@ -76,8 +82,7 @@ class CreateBlock:
             exit("\n \033[91m  Block " + self.__arguments['class_name'] + " exist!!\n \033[0m ")
 
     def __get_name_sub_block(self):
-        self.__arguments['sub_class_name']
-        return self.__arguments['sub_class_name']
+        return '\',\''.join(self.__arguments['sub_class_name'])
 
     def __change_settings_block(self):
         path_settings = os.path.abspath(self.__settings['path_block_class'].strip('/')) + "/settings.php"
@@ -113,3 +118,13 @@ class CreateBlock:
             else:
                 os.remove(self.__path_blocks)
                 exit("\n \033[91m  Dir  " + path + " not exits!!\n \033[0m see " + os.path.abspath('create_block.conf'))
+
+    def __create_sub_blocks(self):
+        if 'sub_class_name' in self.__arguments:
+            sub_blocks = self.__arguments['sub_class_name']
+            for class_name in sub_blocks:
+                self.__arguments = {}
+                self.__arguments['class_name'] = class_name
+                self.__arguments['name_block'] = class_name
+                self.__arguments['visible'] = 0
+                self.run()

@@ -13,8 +13,9 @@ class Help:
         message += '\ndefault_block_content   ------------------ default function with helpers in class (1/0) \n'
 
         message +='\nСommands:\n'
-        message += '\nblock init    --------------------------------------- install script block in this project\n'
-        message += '\nblock init --ext   ------------ install script block in this project with extension config\n'
-        message += '\nblock [class name block] [name block] [visible:1 or 0, default: 1]   -------- create block\n'
-        message += '\nblock [class name block] --rm     ------------------------------------------- remove block\n'
+        message += '\nblock init    -------------------------------------------------------- install script block in this project\n'
+        message += '\nblock init --ext   ----------------------------- install script block in this project with extension config\n'
+        message += '\nblock [class name block*] [name block*] [visible:1 or 0, default: 1] [sub class names]  -------- create block\n'
+        message += '\nblock [class name block*] --rm     ------------------------------------------------------------ remove block\n'
+        message += '\n* - required params\n'
         exit(message)

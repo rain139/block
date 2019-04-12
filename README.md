@@ -32,9 +32,15 @@ Automatic created block and remove in fsm/amparo cms
         block image "Service image" 0    
         
         block image "Service image" 1 img   (this->typeBlocks($lang, $name, $val, ['img']);
+            
+            or many sub block:
         
-        block image "Service image" 1 "img, img2,img3"  (this->typeBlocks($lang, $name, $val, ['img', 'img2','img3']);
-        
+        block image "Service image" 1 " sublock1 ,sublock2, sublock3"  (this->typeBlocks($lang, $name, $val, ['img', 'img2','img3']);
+            
+            or
+            
+        block image "Service image" 1 sublock1,sublock2,sublock3 (without spaces)
+             
            
 # Config
 
