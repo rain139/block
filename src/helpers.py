@@ -13,7 +13,3 @@ def search_key(key):
         if item.find(key) >= 0:
             return True
     return False
-
-
-def show_help():
-    exit('fe')

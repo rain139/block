@@ -14,6 +14,7 @@ class CreateBlock:
         self.__set_argument('Not find first argument (class_name)', 1, 'class_name')
         self.__set_argument('Not find second argument (name block)', 2, 'name_block')
         self.__set_argument(False, 3, 'visible', ['1', '0'])
+        self.__set_argument(False, 4, 'sub_class_name')
 
     def __set_argument(self, error, key, name_argument, value=[]):
         if key >= len(sys.argv):
@@ -43,7 +44,8 @@ class CreateBlock:
         if os.path.isdir(dir_blocks):
             self.__path_blocks = dir_blocks + "/block_" + self.__arguments['class_name'] + ".class.php"
         else:
-            exit("\n \033[91m  Dir not found:  " + dir_blocks + "\n  \033[0m see " + os.path.abspath('create_block.conf'))
+            exit("\n \033[91m  Dir not found:  " + dir_blocks + "\n  \033[0m see " + os.path.abspath(
+                'create_block.conf'))
 
     def __create_block(self):
         if not os.path.isfile(self.__path_blocks):
@@ -51,10 +53,19 @@ class CreateBlock:
                 file.write("<?php\n\n")
                 file.write("class block_" + self.__arguments['class_name'] + " extends parent_block \n{")
                 if int(self.__settings['default_block_content']):
-                    file.write(
-                        '\n\n    public function getVars() \n    {\n       $vars = [];\n\n       $vars[\'title\'] = \'text\';\n       $vars[\'description\'] = \'textarea\';\n\n       return $vars;\n    }\n\n\n')
-                    file.write(
-                        '    //public function typeItems($lang = 99, $name = \'\', $val = \'\')\n    //{\n        //return $this->typeBlocks($lang, $name, $val, []);\n    //}\n\n\n\n')
+
+                    if 'sub_class_name' in self.__arguments:
+                        sub_class_name = self.__get_name_sub_block()
+                        file.write(
+                            '\n\n    public function getVars() \n    {\n       $vars = [];\n\n       $vars[\'title\'] = \'text\';\n       $vars[\'items\'] = \'items\';\n\n       return $vars;\n    }\n\n\n')
+                        file.write(
+                            '     public function typeItems($lang = 99, $name = \'\', $val = \'\')\n     {\n         return $this->typeBlocks($lang, $name, $val, [\'' + sub_class_name + '\']);\n     }\n\n\n\n')
+                    else:
+                        file.write(
+                            '\n\n    public function getVars() \n    {\n       $vars = [];\n\n       $vars[\'title\'] = \'text\';\n       $vars[\'description\'] = \'textarea\';\n\n       return $vars;\n    }\n\n\n')
+                        file.write(
+                            '    //public function typeItems($lang = 99, $name = \'\', $val = \'\')\n    //{\n        //return $this->typeBlocks($lang, $name, $val, []);\n    //}\n\n\n\n')
+
                     file.write(
                         '    //public function typeSelect($lang = 99, $name = \'\', $val = \'\')\n    //{\n        //return parent::typeArray($lang, $name, $val, \'1;2;3;\');\n    //}\n\n')
                     file.write(
@@ -63,6 +74,10 @@ class CreateBlock:
                 file.close()
         else:
             exit("\n \033[91m  Block " + self.__arguments['class_name'] + " exist!!\n \033[0m ")
+
+    def __get_name_sub_block(self):
+        self.__arguments['sub_class_name']
+        return self.__arguments['sub_class_name']
 
     def __change_settings_block(self):
         path_settings = os.path.abspath(self.__settings['path_block_class'].strip('/')) + "/settings.php"

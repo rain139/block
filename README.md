@@ -21,8 +21,21 @@ Automatic created block and remove in fsm/amparo cms
         
         block [class name block] [name block] [visible:1 or 0, default: 1]   -------- create block
         
+        block [class name block] [name block] 1/0 sub_class name ------ create block and sub block
+        
         block [class name block] --rm     ------------------------------------------- remove block
 
+ # Example
+ 
+        block image "Service image" 
+           
+        block image "Service image" 0    
+        
+        block image "Service image" 1 img   (this->typeBlocks($lang, $name, $val, ['img']);
+        
+        block image "Service image" 1 "img, img2,img3"  (this->typeBlocks($lang, $name, $val, ['img', 'img2','img3']);
+        
+           
 # Config
 
        Project confing in create_block.conf (when you run block init)
