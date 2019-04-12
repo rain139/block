@@ -23,8 +23,9 @@ class CreateBlock:
             self.__arguments['sub_class_name'] = list(map(lambda item: item.strip(), sub_class_name))
 
     def __set_argument(self, error, key, name_argument, value=[]):
-        if key >= len(sys.argv) and error:
-            exit("\n \033[91m " + error + " see --help \n \033[0m")
+        if key >= len(sys.argv):
+            if error:
+                exit("\n \033[91m " + error + " see --help \n \033[0m")
         elif value:
             if sys.argv[key].isdigit() and sys.argv[key] in value:
                 self.__arguments[name_argument] = sys.argv[key]
