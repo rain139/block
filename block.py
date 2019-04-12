@@ -8,10 +8,9 @@ from src.helpers import *
 
 class block:
     def __init__(self):
-        pass
-        # dir_ = __file__.replace('block.py', '')
-        # command = 'cd ' + dir_ + ' && git checkout master && git pull'
-        # subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+        dir_ = __file__.replace('block.py', '')
+        command = 'cd ' + dir_ + ' && git checkout master && git pull'
+        subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
 
     def route(self):
         if '--help' in sys.argv:
