@@ -19,11 +19,13 @@ Automatic created block and remove in fsm/amparo cms
         
         block init --ext   ------------ install script block in this project with extension config
         
-        block [class name block] [name block] [visible:1 or 0, default: 1]   -------- create block
+        block [class name block*] [name block*] [visible:1 or 0, default: 1]   -------- create block
         
-        block [class name block] [name block] 1/0 sub_class name ------ create block and sub block
+        block [class name block*] [name block*] [1/0] [sub_class name] ------ create block and sub block
         
-        block [class name block] --rm     ------------------------------------------- remove block
+        block [class name block*] --rm     ------------------------------------------- remove block
+        
+        *- required argument
 
  # Example
  
